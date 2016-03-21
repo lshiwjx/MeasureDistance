@@ -6,7 +6,7 @@
 #include <QPainter>
 #include "opencv2/opencv.hpp"
 //#include "compressiveTracking/CompressiveTracker.h"
-//#include "Detector.h"
+#include "Detector.h"
 
 class MyLabel : public QLabel
 {

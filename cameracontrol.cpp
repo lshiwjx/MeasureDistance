@@ -31,7 +31,6 @@ void CameraControl::cameraOpen()
     mpCtrl->SetRemoteIPAddr(mCameraIp);
     mpCtrl->SetCurrentControlCam(1);
     mpCtrl->Connect();
-//    QThread::sleep(5);
     mpCtrl->SendCameraCommand("home");
     this->setInited(true);
 }
