@@ -16,13 +16,20 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 {
 	this->inited = false;
 	mTimer.stop();
-
     this->mBottomRight = event->pos();
-    if(abs( (mBottomRight.x() - mTopLeft.x())*(mTopLeft.y() - mBottomRight.y()) ) > 400)
+
+	float x = 0, y = 0, width = 0, height = 0;
+	x = mBottomRight.x() < mTopLeft.x() ? mBottomRight.x() : mTopLeft.y();
+	y = mBottomRight.y() < mTopLeft.x() ? mBottomRight.y() : mTopLeft.y();
+	width = abs(mBottomRight.x() - mTopLeft.x());
+	height = abs(mTopLeft.y() - mBottomRight.y());
+
+    if(width*height > 400)
     {
         mRect.setTopLeft(mTopLeft);
         mRect.setBottomRight(mBottomRight);
-        rect = cv::Rect(mRect.topLeft().x(),mRect.topLeft().y(),mRect.width(),mRect.height());
+
+        rect = cv::Rect(x, y, width, height);
 
 		if(tracker = Tracker::create("KCF"))
 			if (tracker->init(frame, rect))
