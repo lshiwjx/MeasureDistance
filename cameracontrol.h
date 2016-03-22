@@ -30,6 +30,11 @@ public:
     void cameraMoveRight();
     void cameraMoveHome();
 
+	void cameraMoveUping();
+	void cameraMoveDowning();
+	void cameraMoveLefting();
+	void cameraMoveRighting();
+
     void cameraZoomIn();
     void cameraZoomOut();
 

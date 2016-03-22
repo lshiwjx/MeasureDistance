@@ -57,6 +57,13 @@ private slots:
 
     void on_cameraStopBtn_clicked();
 
+	void cameraUpBtn_pressed();
+
+	void cameraDownBtn_pressed();
+
+	void cameraLeftBtn_pressed();
+
+	void cameraRightBtn_pressed();
 private:
     Ui::RobotControlDialog *ui;
     RobotClient* mpRobotClient;

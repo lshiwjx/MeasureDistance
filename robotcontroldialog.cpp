@@ -10,6 +10,10 @@ RobotControlDialog::RobotControlDialog(QWidget *parent, RobotClient *qRobotClien
 {
     ui->setupUi(this);
     connect(&timer,SIGNAL(timeout()),this,SLOT(saveImage()));
+//	connect(this->ui->cameraUpBtn, SIGNAL(pressed()), this, SLOT(cameraUpBtn_pressed()));
+//	connect(this->ui->cameraDownBtn, SIGNAL(pressed()), this, SLOT(cameraDownBtn_pressed()));
+//	connect(this->ui->cameraLeftBtn, SIGNAL(pressed()), this, SLOT(cameraLeftBtn_pressed()));
+//	connect(this->ui->cameraRightBtn, SIGNAL(pressed()), this, SLOT(cameraRightBtn_pressed()));
 }
 
 RobotControlDialog::~RobotControlDialog()
@@ -85,7 +89,7 @@ void RobotControlDialog::on_cameraOpenBtn_clicked()
     if(cameraLogin.exec()==cameraLogin.Accepted)
     {
         mpCamera->cameraOpen();
-        this->timer.start(100);
+        this->timer.start(30);
     }
 }
 
@@ -102,4 +106,24 @@ void RobotControlDialog::on_cameraStopBtn_clicked()
 {
     mpCamera->cameraClose();
     timer.stop();
+}
+
+void RobotControlDialog::cameraUpBtn_pressed()
+{
+	this->mpCamera->cameraMoveUping();
+}
+
+void RobotControlDialog::cameraDownBtn_pressed()
+{
+	this->mpCamera->cameraMoveDowning();
+}
+
+void RobotControlDialog::cameraLeftBtn_pressed()
+{
+	this->mpCamera->cameraMoveLefting();
+}
+
+void RobotControlDialog::cameraRightBtn_pressed()
+{
+	this->mpCamera->cameraMoveRighting();
 }

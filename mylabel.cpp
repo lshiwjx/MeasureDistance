@@ -3,9 +3,7 @@
 MyLabel::MyLabel(QWidget *parent):
     QLabel(parent)
 {
-//    this->mImage = mPixmap.toImage();
-//    frame = cv::Mat(mImage.height(), mImage.width(), CV_8UC3, const_cast<uchar*>(mImage.bits()), mImage.bytesPerLine());
-//    connect(&m_tld, SIGNAL(boundingRect(QRectF)), this, SLOT(boundingRect(QRectF)));
+	connect(&mTimer, SIGNAL(timeout()), this, SLOT(updateFrame()));
 }
 
 
@@ -16,19 +14,52 @@ void MyLabel::mousePressEvent(QMouseEvent *event)
 
 void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 {
+	this->inited = false;
+	mTimer.stop();
+
     this->mBottomRight = event->pos();
-    if(abs( (mBottomRight.x() - mTopLeft.x())*(mTopLeft.y()-mBottomRight.y()) ) > 400)
+    if(abs( (mBottomRight.x() - mTopLeft.x())*(mTopLeft.y() - mBottomRight.y()) ) > 400)
     {
         mRect.setTopLeft(mTopLeft);
         mRect.setBottomRight(mBottomRight);
-//        rect = cv::Rect(mRect.topLeft().x(),mRect.topLeft().y(),mRect.width(),mRect.height());
-//        cv::cvtColor(frame, grayImage, CV_RGB2GRAY);
-//        ct.init(grayImage,rect);
-//        this->inited = true;
-//        if (m_tld.init(*mpImage, mRect))
-//            m_tld.start();
+        rect = cv::Rect(mRect.topLeft().x(),mRect.topLeft().y(),mRect.width(),mRect.height());
+
+		if(tracker = Tracker::create("KCF"))
+			if (tracker->init(frame, rect))
+			{
+				this->mTimer.start(30);
+				this->inited = true;
+			}
+			else
+			{
+				QMessageBox msbox;
+				msbox.setText("tracker init false");
+				msbox.exec();
+			}
+		else
+		{
+			QMessageBox msbox;
+			msbox.setText("algorithm create false");
+			msbox.exec();
+		}
     }
 
+}
+
+void MyLabel::updateFrame()
+{
+	this->mTimer.stop();
+	if (this->inited)
+		if (tracker->update(frame, rect))
+			isRectFount = true;
+		else 
+		{
+			isRectFount = false;
+			QMessageBox msbox;
+			msbox.setText("frame update false, obj may loss");
+			msbox.exec();
+		}
+	this->mTimer.start();
 }
 
 void MyLabel::boundingRect(QRectF rect, bool show)
@@ -40,20 +71,18 @@ void MyLabel::boundingRect(QRectF rect, bool show)
 void MyLabel::setmPixmap(QPixmap &pixmap)
 {
     mPixmap = pixmap;
+	mImage = mPixmap.toImage();
+	frame = cv::Mat(mImage.height(), mImage.width(), CV_8UC3, const_cast<uchar*>(mImage.bits()), mImage.bytesPerLine());
 }
 void MyLabel::paintEvent(QPaintEvent *event)
 {
-    QLabel::paintEvent(event);
-    QPainter painter(this);
-    painter.setPen(QPen(Qt::red,2));
-//    if(inited)
-//    {
-//        cv::cvtColor(frame, grayImage, CV_RGB2GRAY);
-//        ct.processFrame(grayImage, rect);
-//    }
-//    printf("%d",rect.x);
-//    m_tld.processFrame(mpImage);
-    painter.drawRect(mRect.topLeft().x(),mRect.topLeft().y(),mRect.width(),mRect.height());
+	QLabel::paintEvent(event);
+	QPainter painter(this);
+	painter.setPen(QPen(Qt::red, 2));
+	if(isRectFount)
+		painter.drawRect(rect.x, rect.y, rect.width, rect.height);
+	else
+		painter.drawRect(0, 0, 0, 0);
 }
 
 
