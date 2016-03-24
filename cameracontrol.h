@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QThread>
 #include "vitamindecoderlib.h"
+#include "opencv2\opencv.hpp"
 
 
 class CameraControl
