@@ -89,7 +89,7 @@ void RobotControlDialog::on_cameraOpenBtn_clicked()
     if(cameraLogin.exec()==cameraLogin.Accepted)
     {
         mpCamera->cameraOpen();
-        this->timer.start(40);
+        this->timer.start(30);
     }
 }
 
