@@ -40,7 +40,6 @@ private:
     cv::Mat frame;
 
 	Ptr<Tracker> tracker = Tracker::create("KCF");
-
     cv::Mat grayImage;
     bool inited = false;
 	bool isRectFount = false;
