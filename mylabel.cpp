@@ -1,7 +1,8 @@
 #include "mylabel.h"
 
 MyLabel::MyLabel(QWidget *parent):
-    QLabel(parent)
+    QLabel(parent),
+	tracker(true,false,true,true)
 {
 	//connect(&mTimer, SIGNAL(timeout()), this, SLOT(updateFrame()));
 }
@@ -31,7 +32,7 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 
         rect = cv::Rect(x, y, width, height);
 
-		if(tracker = Tracker::create("KCF"))
+		/*if(tracker = Tracker::create("KCF"))
 			if (tracker->init(frame, rect))
 			{
 				//this->mTimer.start(30);
@@ -48,7 +49,9 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 			QMessageBox msbox;
 			msbox.setText("algorithm create false");
 			msbox.exec();
-		}
+		}*/
+		tracker.init(rect, frame);
+		this->inited = true;
     }
 
 }
@@ -56,7 +59,7 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 void MyLabel::updateFrame()
 {
 	//this->mTimer.stop();
-	if (this->inited)
+	/*if (this->inited)
 		if (tracker->update(frame, rect))
 			isRectFount = true;
 		else 
@@ -65,7 +68,7 @@ void MyLabel::updateFrame()
 			QMessageBox msbox;
 			msbox.setText("frame update false, obj may loss");
 			msbox.exec();
-		}
+		}*/
 	//this->mTimer.start();
 }
 
@@ -89,14 +92,20 @@ void MyLabel::paintEvent(QPaintEvent *event)
 
 	isRectFount = false;
 
-	if (this->inited)
+	/*if (this->inited)
 		if (tracker->update(frame, rect))
 			isRectFount = true;
 
 	if(isRectFount)
 		painter.drawRect(rect.x, rect.y, rect.width, rect.height);
 	else
-		painter.drawRect(0, 0, 0, 0);
+		painter.drawRect(0, 0, 0, 0);*/
+	if (this->inited)
+	{
+		rect = tracker.update(frame);
+		painter.drawRect(rect.x, rect.y, rect.width, rect.height);
+	}
+
 }
 
 
