@@ -19,8 +19,8 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
     this->mBottomRight = event->pos();
 
 	float x = 0, y = 0, width = 0, height = 0;
-	x = mBottomRight.x() < mTopLeft.x() ? mBottomRight.x() : mTopLeft.x();
-	y = mBottomRight.y() < mTopLeft.y() ? mBottomRight.y() : mTopLeft.y();
+	x = mBottomRight.x() < mTopLeft.x() ? mBottomRight.x() : mTopLeft.y();
+	y = mBottomRight.y() < mTopLeft.x() ? mBottomRight.y() : mTopLeft.y();
 	width = abs(mBottomRight.x() - mTopLeft.x());
 	height = abs(mTopLeft.y() - mBottomRight.y());
 
@@ -34,7 +34,7 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 		if(tracker = Tracker::create("KCF"))
 			if (tracker->init(frame, rect))
 			{
-				this->mTimer.start(100);
+				this->mTimer.start(30);
 				this->inited = true;
 			}
 			else
@@ -55,17 +55,18 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 
 void MyLabel::updateFrame()
 {
-	//this->mTimer.stop();
+	this->mTimer.stop();
 	if (this->inited)
 		if (tracker->update(frame, rect))
 			isRectFount = true;
-		else
+		else 
 		{
 			isRectFount = false;
+			QMessageBox msbox;
+			msbox.setText("frame update false, obj may loss");
+			msbox.exec();
 		}
-	else
-		isRectFount = false;
-	//this->mTimer.start();
+	this->mTimer.start();
 }
 
 void MyLabel::boundingRect(QRectF rect, bool show)
