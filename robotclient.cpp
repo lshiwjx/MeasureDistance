@@ -61,7 +61,7 @@ void RobotClient::goBack()
 void RobotClient::turnRight()
 {
     ArNetPacket sendPacket;
-    this->setRadio(this->getRadio()+1);
+    this->setRadio(this->getRadio()+3);
     sendPacket.byte4ToBuf((ArTypes::Byte4)0.0);
     sendPacket.byte4ToBuf((ArTypes::Byte4)this->mRadio);
     pClient->requestOnce("setMoveInfo", &sendPacket);
@@ -70,7 +70,7 @@ void RobotClient::turnRight()
 void RobotClient::turnLeft()
 {
     ArNetPacket sendPacket;
-    this->setRadio(this->getRadio()-1);
+    this->setRadio(this->getRadio()-3);
     sendPacket.byte4ToBuf((ArTypes::Byte4)0.0);
     sendPacket.byte4ToBuf((ArTypes::Byte4)this->mRadio);
     pClient->requestOnce("setMoveInfo", &sendPacket);
