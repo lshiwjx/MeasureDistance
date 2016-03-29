@@ -3,7 +3,7 @@
 MyLabel::MyLabel(QWidget *parent):
     QLabel(parent)
 {
-	//connect(&mTimer, SIGNAL(timeout()), this, SLOT(updateFrame()));
+	connect(&mTimer, SIGNAL(timeout()), this, SLOT(updateFrame()));
 }
 
 
@@ -15,7 +15,7 @@ void MyLabel::mousePressEvent(QMouseEvent *event)
 void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 {
 	this->inited = false;
-	//mTimer.stop();
+	mTimer.stop();
     this->mBottomRight = event->pos();
 
 	float x = 0, y = 0, width = 0, height = 0;
@@ -34,7 +34,7 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 		if(tracker = Tracker::create("KCF"))
 			if (tracker->init(frame, rect))
 			{
-				//this->mTimer.start(30);
+				this->mTimer.start(100);
 				this->inited = true;
 			}
 			else
@@ -56,16 +56,10 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 void MyLabel::updateFrame()
 {
 	//this->mTimer.stop();
+	isRectFount = false;
 	if (this->inited)
 		if (tracker->update(frame, rect))
 			isRectFount = true;
-		else 
-		{
-			isRectFount = false;
-			QMessageBox msbox;
-			msbox.setText("frame update false, obj may loss");
-			msbox.exec();
-		}
 	//this->mTimer.start();
 }
 
@@ -74,12 +68,37 @@ void MyLabel::boundingRect(QRectF rect, bool show)
     mRect = rect;
 }
 
+cv::Mat QImage2cvMat(QImage image)
+{
+	 cv::Mat mat;
+	 qDebug() << image.format();
+	 switch (image.format())
+	 {
+	     case QImage::Format_ARGB32:
+		 case QImage::Format_RGB32:
+		 case QImage::Format_ARGB32_Premultiplied:
+			mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
+			break;
+		case QImage::Format_RGB888:
+			mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
+			cv::cvtColor(mat, mat, CV_BGR2RGB);
+			break;
+		case QImage::Format_Indexed8:
+			mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
+			break;
+			}
+	return mat;
+}
+
 
 void MyLabel::setmPixmap(QPixmap &pixmap)
 {
     mPixmap = pixmap;
 	mImage = mPixmap.toImage();
-	frame = cv::Mat(mImage.height(), mImage.width(), CV_8UC3, const_cast<uchar*>(mImage.bits()), mImage.bytesPerLine());
+	if (!mImage.isNull()) {
+		frame = QImage2cvMat(mImage);
+	//	imshow("image", frame);
+	}
 }
 void MyLabel::paintEvent(QPaintEvent *event)
 {
@@ -87,11 +106,13 @@ void MyLabel::paintEvent(QPaintEvent *event)
 	QPainter painter(this);
 	painter.setPen(QPen(Qt::red, 2));
 
-	isRectFount = false;
+	//isRectFount = false;
 
-	if (this->inited)
+	/*if (this->inited) 
+	{
 		if (tracker->update(frame, rect))
 			isRectFount = true;
+	}*/
 
 	if(isRectFount)
 		painter.drawRect(rect.x, rect.y, rect.width, rect.height);

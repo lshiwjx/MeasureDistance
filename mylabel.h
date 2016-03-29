@@ -9,6 +9,7 @@
 #include <opencv2/core/utility.hpp> 
 #include <opencv2/tracking/tracker.hpp>
 #include <opencv2/highgui.hpp>
+#include <qdebug.h>
 
 //#include "compressiveTracking/CompressiveTracker.h"
 using namespace cv;
@@ -40,7 +41,7 @@ private:
     cv::Mat frame;
 
 	Ptr<Tracker> tracker = Tracker::create("KCF");
-    cv::Mat grayImage;
+//    cv::Mat grayImage;
     bool inited = false;
 	bool isRectFount = false;
 	QTimer mTimer;
