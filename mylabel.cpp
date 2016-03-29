@@ -1,5 +1,8 @@
 #include "mylabel.h"
 
+cv::Mat QImage2cvMat(QImage image);
+
+
 MyLabel::MyLabel(QWidget *parent):
     QLabel(parent)
 {
@@ -31,10 +34,14 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 
         rect = cv::Rect(x, y, width, height);
 
+		if (!mImage.isNull()) {
+			frame = QImage2cvMat(mImage);
+		}
+
 		if(tracker = Tracker::create("KCF"))
 			if (tracker->init(frame, rect))
 			{
-				this->mTimer.start(100);
+				this->mTimer.start(20);
 				this->inited = true;
 			}
 			else
@@ -53,8 +60,15 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 
 }
 
+
+
 void MyLabel::updateFrame()
 {
+	if (!mImage.isNull()) {
+		frame = QImage2cvMat(mImage);
+		//cvtColor(frame, frame, CV_BGR2GRAY);
+		//imshow("image", frame);
+	}
 	//this->mTimer.stop();
 	isRectFount = false;
 	if (this->inited)
@@ -63,42 +77,19 @@ void MyLabel::updateFrame()
 	//this->mTimer.start();
 }
 
-void MyLabel::boundingRect(QRectF rect, bool show)
+/*void MyLabel::boundingRect(QRectF rect, bool show)
 {
     mRect = rect;
-}
+}*/
 
-cv::Mat QImage2cvMat(QImage image)
-{
-	 cv::Mat mat;
-	 qDebug() << image.format();
-	 switch (image.format())
-	 {
-	     case QImage::Format_ARGB32:
-		 case QImage::Format_RGB32:
-		 case QImage::Format_ARGB32_Premultiplied:
-			mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
-			break;
-		case QImage::Format_RGB888:
-			mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
-			cv::cvtColor(mat, mat, CV_BGR2RGB);
-			break;
-		case QImage::Format_Indexed8:
-			mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
-			break;
-			}
-	return mat;
-}
+
 
 
 void MyLabel::setmPixmap(QPixmap &pixmap)
 {
     mPixmap = pixmap;
 	mImage = mPixmap.toImage();
-	if (!mImage.isNull()) {
-		frame = QImage2cvMat(mImage);
-	//	imshow("image", frame);
-	}
+
 }
 void MyLabel::paintEvent(QPaintEvent *event)
 {
@@ -122,3 +113,25 @@ void MyLabel::paintEvent(QPaintEvent *event)
 
 
 
+cv::Mat QImage2cvMat(QImage image)
+{
+	cv::Mat mat;
+	//qDebug() << image.format();
+	switch (image.format())
+	{
+	case QImage::Format_ARGB32:
+	case QImage::Format_RGB32:
+	case QImage::Format_ARGB32_Premultiplied:
+		mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
+		cvtColor(mat, mat, CV_RGBA2RGB);
+		break;
+	case QImage::Format_RGB888:
+		mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
+		cv::cvtColor(mat, mat, CV_BGR2RGB);
+		break;
+	case QImage::Format_Indexed8:
+		mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
+		break;
+	}
+	return mat;
+}
