@@ -4,7 +4,7 @@ MyLabel::MyLabel(QWidget *parent):
     QLabel(parent),
 	tracker(true,false,true,true)
 {
-	//connect(&mTimer, SIGNAL(timeout()), this, SLOT(updateFrame()));
+	connect(&mTimer, SIGNAL(timeout()), this, SLOT(updateFrame()));
 }
 
 
@@ -15,8 +15,8 @@ void MyLabel::mousePressEvent(QMouseEvent *event)
 
 void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 {
-	this->inited = false;
-	//mTimer.stop();
+	//this->inited = false;
+	mTimer.stop();
     this->mBottomRight = event->pos();
 
 	float x = 0, y = 0, width = 0, height = 0;
@@ -51,16 +51,18 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 			msbox.exec();
 		}*/
 		tracker.init(rect, frame);
-		this->inited = true;
+		this->mTimer.start(20);
+		//this->inited = true;
     }
 
 }
 
 void MyLabel::updateFrame()
 {
+	rect = tracker.update(frame);
 	//this->mTimer.stop();
 	/*if (this->inited)
-		if (tracker->update(frame, rect))
+		if (tracker.update(frame, rect))
 			isRectFount = true;
 		else 
 		{
@@ -70,6 +72,7 @@ void MyLabel::updateFrame()
 			msbox.exec();
 		}*/
 	//this->mTimer.start();
+
 }
 
 void MyLabel::boundingRect(QRectF rect, bool show)
@@ -87,6 +90,7 @@ cv::Mat QImage2cvMat(QImage image)
 	case QImage::Format_RGB32:
 	case QImage::Format_ARGB32_Premultiplied:
 		mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
+		cvtColor(mat, mat, CV_RGBA2RGB);
 		break;
 	case QImage::Format_RGB888:
 		mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
@@ -111,7 +115,8 @@ void MyLabel::paintEvent(QPaintEvent *event)
 	QPainter painter(this);
 	painter.setPen(QPen(Qt::red, 2));
 
-	isRectFount = false;
+	//isRectFount = false;
+	painter.drawRect(rect.x, rect.y, rect.width, rect.height);
 
 	/*if (this->inited)
 		if (tracker->update(frame, rect))
@@ -121,11 +126,11 @@ void MyLabel::paintEvent(QPaintEvent *event)
 		painter.drawRect(rect.x, rect.y, rect.width, rect.height);
 	else
 		painter.drawRect(0, 0, 0, 0);*/
-	if (this->inited)
+	/*if (this->inited)
 	{
 		rect = tracker.update(frame);
 		painter.drawRect(rect.x, rect.y, rect.width, rect.height);
-	}
+	}*/
 
 }
 
