@@ -77,12 +77,33 @@ void MyLabel::boundingRect(QRectF rect, bool show)
     mRect = rect;
 }
 
-
+cv::Mat QImage2cvMat(QImage image)
+{
+	cv::Mat mat;
+	//qDebug() << image.format();
+	switch (image.format())
+	{
+	case QImage::Format_ARGB32:
+	case QImage::Format_RGB32:
+	case QImage::Format_ARGB32_Premultiplied:
+		mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
+		break;
+	case QImage::Format_RGB888:
+		mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
+		cv::cvtColor(mat, mat, CV_BGR2RGB);
+		break;
+	case QImage::Format_Indexed8:
+		mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
+		break;
+	}
+	return mat;
+}
 void MyLabel::setmPixmap(QPixmap &pixmap)
 {
     mPixmap = pixmap;
 	mImage = mPixmap.toImage();
-	frame = cv::Mat(mImage.height(), mImage.width(), CV_8UC3, const_cast<uchar*>(mImage.bits()), mImage.bytesPerLine());
+	if(!mImage.isNull())
+	    frame = QImage2cvMat(mImage);
 }
 void MyLabel::paintEvent(QPaintEvent *event)
 {
