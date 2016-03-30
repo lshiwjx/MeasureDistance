@@ -45,6 +45,9 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Source Files\kcf">
+      <UniqueIdentifier>{81eccbe1-1a38-4eee-b14f-567c0ce1d353}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cameracontrol.cpp">
@@ -91,6 +94,12 @@
     </ClCompile>
     <ClCompile Include="Release\moc_robotcontroldialog.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fhog.cpp">
+      <Filter>Source Files\kcf</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kcftracker.cpp">
+      <Filter>Source Files\kcf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

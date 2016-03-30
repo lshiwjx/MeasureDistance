@@ -9,7 +9,7 @@
 #include <opencv2/core/utility.hpp> 
 #include <opencv2/tracking/tracker.hpp>
 #include <opencv2/highgui.hpp>
-#include <qdebug.h>
+#include "src\kcftracker.hpp"
 
 //#include "compressiveTracking/CompressiveTracker.h"
 using namespace cv;
@@ -21,12 +21,13 @@ public:
 
     void paintEvent(QPaintEvent *event);
     void setmPixmap(QPixmap &pixmap);
-
+signals:
+	void setDistance(float distance);
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 public slots:
-   // void boundingRect(QRectF rect, bool show = true);
+    void boundingRect(QRectF rect, bool show = true);
 	void updateFrame();
 private:
     QRectF mRect;
@@ -40,8 +41,9 @@ private:
     cv::Rect2d rect = cv::Rect(0,0,0,0);
     cv::Mat frame;
 
-	Ptr<Tracker> tracker = Tracker::create("KCF");
-//    cv::Mat grayImage;
+	KCFTracker tracker;
+	//Ptr<Tracker> tracker = Tracker::create("KCF");
+    cv::Mat grayImage;
     bool inited = false;
 	bool isRectFount = false;
 	QTimer mTimer;

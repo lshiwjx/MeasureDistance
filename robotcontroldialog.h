@@ -64,6 +64,8 @@ private slots:
 	void cameraLeftBtn_pressed();
 
 	void cameraRightBtn_pressed();
+
+	void setDistance(float distance);
 private:
     Ui::RobotControlDialog *ui;
     RobotClient* mpRobotClient;

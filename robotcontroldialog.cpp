@@ -10,6 +10,7 @@ RobotControlDialog::RobotControlDialog(QWidget *parent, RobotClient *qRobotClien
 {
     ui->setupUi(this);
     connect(&timer,SIGNAL(timeout()),this,SLOT(saveImage()));
+	connect(this->ui->figureLabel, SIGNAL(setDistance(float)), this, SLOT(setDistance(float)));
 //	connect(this->ui->cameraUpBtn, SIGNAL(pressed()), this, SLOT(cameraUpBtn_pressed()));
 //	connect(this->ui->cameraDownBtn, SIGNAL(pressed()), this, SLOT(cameraDownBtn_pressed()));
 //	connect(this->ui->cameraLeftBtn, SIGNAL(pressed()), this, SLOT(cameraLeftBtn_pressed()));
@@ -126,4 +127,9 @@ void RobotControlDialog::cameraLeftBtn_pressed()
 void RobotControlDialog::cameraRightBtn_pressed()
 {
 	this->mpCamera->cameraMoveRighting();
+}
+
+void RobotControlDialog::setDistance(float distance)
+{
+	this->ui->DistanceValueLabel->setNum(distance);
 }
