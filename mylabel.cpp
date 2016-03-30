@@ -51,7 +51,7 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 			msbox.exec();
 		}*/
 		tracker.init(rect, frame);
-		this->mTimer.start(20);
+		this->mTimer.start(10);
 		//this->inited = true;
     }
 
@@ -60,6 +60,7 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 void MyLabel::updateFrame()
 {
 	rect = tracker.update(frame);
+	emit setDistance(1500+7.7*(576-rect.y-rect.height));
 	//this->mTimer.stop();
 	/*if (this->inited)
 		if (tracker.update(frame, rect))

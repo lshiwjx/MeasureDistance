@@ -21,7 +21,8 @@ public:
 
     void paintEvent(QPaintEvent *event);
     void setmPixmap(QPixmap &pixmap);
-
+signals:
+	void setDistance(float distance);
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
