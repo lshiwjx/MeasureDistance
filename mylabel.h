@@ -23,6 +23,7 @@ public:
     void setmPixmap(QPixmap &pixmap);
 signals:
 	void setDistance(float distance);
+	void requestDistance(int angle);
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

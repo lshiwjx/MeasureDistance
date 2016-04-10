@@ -60,7 +60,8 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 void MyLabel::updateFrame()
 {
 	rect = tracker.update(frame);
-	emit setDistance(1500+7.7*(576-rect.y-rect.height));
+	double num = rect.y + rect.height - 288;
+	emit setDistance(0.1169*num*num - 60.93*num + 9970);
 	//this->mTimer.stop();
 	/*if (this->inited)
 		if (tracker.update(frame, rect))
@@ -73,6 +74,11 @@ void MyLabel::updateFrame()
 			msbox.exec();
 		}*/
 	//this->mTimer.start();
+	double y = (rect.x + rect.width / 2 - 352);
+	double x = (576 - rect.y - rect.height);
+	double radio =  y/x ;
+	int angle = atan(radio) * 180 / 3.1415926;
+	emit requestDistance(angle);
 
 }
 

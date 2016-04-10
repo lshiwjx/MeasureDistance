@@ -40,59 +40,7 @@
      <property name="leftMargin">
       <number>0</number>
      </property>
-     <item row="3" column="1">
-      <spacer name="verticalSpacerBottom">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item row="1" column="1">
-      <spacer name="verticalSpacerTop">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="2">
-      <spacer name="horizontalSpacerRight">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="0">
-      <spacer name="horizontalSpacerLeft">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="1">
       <widget class="MyLabel" name="figureLabel">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -132,29 +80,76 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="FigureLable">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+     <item row="0" column="1">
+      <spacer name="verticalSpacerTop">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-       <property name="maximumSize">
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>16777215</width>
-         <height>12</height>
+         <width>20</width>
+         <height>40</height>
         </size>
        </property>
-       <property name="text">
-        <string>实时图像</string>
+      </spacer>
+     </item>
+     <item row="2" column="1">
+      <spacer name="verticalSpacerBottom">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="2">
+      <spacer name="horizontalSpacerRight">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="0">
+      <spacer name="horizontalSpacerLeft">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
    <item>
     <layout class="QGridLayout" name="controlLayout">
+     <item row="3" column="1">
+      <widget class="QLabel" name="DistanceValueLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="DistanceLabel">
+       <property name="text">
+        <string>距离</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="1">
       <layout class="QGridLayout" name="cameraControlLayout">
        <item row="2" column="0">
@@ -229,6 +224,13 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="cameraControlLabel">
+       <property name="text">
+        <string>摄像头控制</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="0">
       <layout class="QGridLayout" name="robotControlLayout">
        <item row="2" column="1">
@@ -268,22 +270,15 @@
        </item>
       </layout>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="cameraControlLabel">
+     <item row="4" column="0">
+      <widget class="QLabel" name="RealDistanceLable">
        <property name="text">
-        <string>摄像头控制</string>
+        <string>实际距离</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="DistanceLabel">
-       <property name="text">
-        <string>距离</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="DistanceValueLabel">
+     <item row="4" column="1">
+      <widget class="QLabel" name="RealDistanceValueLabel">
        <property name="text">
         <string/>
        </property>

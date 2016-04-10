@@ -30,10 +30,14 @@ public:
     double getRadio() const;
     void setRadio(double radio);
 
+	double getDistance(int angle);
 
     bool isInited() const;
     void setInited(bool value);
-
+protected:
+	ArFunctor1C<RobotClient, ArNetPacket*> myHandleLaserFeedbackDataCB;
+	void handleLaserFeedbackData(ArNetPacket* packet);
+	std::map<int, int> myBuffer;
 private:
     std::string mRobotIp = "";
     double mSpeed = 0;

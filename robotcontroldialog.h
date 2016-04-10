@@ -24,7 +24,7 @@ public:
 
     QTimer timer;
 //    GraphicsView* mpView;
-
+	double getRobotDistance(int);
 
 private slots:
     void on_robotForwardBtn_clicked();
@@ -66,6 +66,8 @@ private slots:
 	void cameraRightBtn_pressed();
 
 	void setDistance(float distance);
+
+	void setRobotDistance(int angle);
 private:
     Ui::RobotControlDialog *ui;
     RobotClient* mpRobotClient;

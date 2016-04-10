@@ -8,7 +8,7 @@
 #include <QMessageBox>
 #include <ActiveQt\QAxWidget>
 //shutdown -f Administraor 123456
-//352*240   352*288   192.168.1.169  704*480  704*576
+//352*288   192.168.1.169  704*576
 
 int main(int argc, char **argv)
 {

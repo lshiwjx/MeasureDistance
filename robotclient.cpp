@@ -2,8 +2,14 @@
 #include <QMessageBox>
 
 RobotClient::RobotClient()
-    :pClient(std::make_shared<ArClientBase>())
+    :pClient(std::make_shared<ArClientBase>()),
+	myHandleLaserFeedbackDataCB(this,&RobotClient::handleLaserFeedbackData)
 {
+	if (pClient->dataExists("getLaserRelatedPos"))
+	{
+		pClient->addHandler("getLaserRelatedPos", &myHandleLaserFeedbackDataCB);
+		pClient->request("getLaserRelatedPos", 100);
+	}
     mRobotIp = "";
 }
 
@@ -106,6 +112,28 @@ void RobotClient::setRadio(double radio)
     mRadio = radio;
 }
 
+double RobotClient::getDistance(int qangle)
+{
+	ArNetPacket laserPacket;
+	int dist = 0;
+	int angle = 0;
+	this->pClient->requestOnce("getLaserRelatedPos", &laserPacket);
+	short numOfData = laserPacket.bufToByte2();
+	if (numOfData > 0)
+	{
+		for (int i = 0; i < numOfData; i++)
+		{
+			dist = laserPacket.bufToByte4();
+			angle = laserPacket.bufToByte4();
+			if (angle / 100 == qangle)
+			{
+				return dist;
+			}
+		}
+	}
+	return 0.0;
+}
+
 bool RobotClient::isInited() const
 {
     return Inited;
@@ -114,4 +142,24 @@ bool RobotClient::isInited() const
 void RobotClient::setInited(bool value)
 {
     Inited = value;
+}
+
+void RobotClient::handleLaserFeedbackData(ArNetPacket * packet)
+{
+	int dist = 0;
+	int angle = 0;
+
+	myBuffer.clear();
+
+	int myNumCnt = packet->bufToByte2();
+
+	if (myNumCnt > 0)
+	{
+		for (int i = 0; i < myNumCnt; i++)
+		{
+			dist = packet->bufToByte4();
+			angle = packet->bufToByte4();
+			myBuffer[angle] = dist;
+		}
+	}
 }

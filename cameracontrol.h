@@ -46,7 +46,7 @@ public:
     QPixmap mPixmap;
 
 private:
-    QString mCameraIp = "";
+    QString mCameraIp = "169.254.0.99";
     QString mCameraId = "root";
     QString mCameraPassword = "123456";
     bool  mInited = false;

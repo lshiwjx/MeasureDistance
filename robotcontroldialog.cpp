@@ -11,6 +11,7 @@ RobotControlDialog::RobotControlDialog(QWidget *parent, RobotClient *qRobotClien
     ui->setupUi(this);
     connect(&timer,SIGNAL(timeout()),this,SLOT(saveImage()));
 	connect(this->ui->figureLabel, SIGNAL(setDistance(float)), this, SLOT(setDistance(float)));
+	connect(this->ui->figureLabel, SIGNAL(requestDistance(int)), this, SLOT(setRobotDistance(int)));
 //	connect(this->ui->cameraUpBtn, SIGNAL(pressed()), this, SLOT(cameraUpBtn_pressed()));
 //	connect(this->ui->cameraDownBtn, SIGNAL(pressed()), this, SLOT(cameraDownBtn_pressed()));
 //	connect(this->ui->cameraLeftBtn, SIGNAL(pressed()), this, SLOT(cameraLeftBtn_pressed()));
@@ -21,6 +22,11 @@ RobotControlDialog::~RobotControlDialog()
 {
     delete ui;
     exit(0);
+}
+
+double RobotControlDialog::getRobotDistance(int angle)
+{
+	return this->mpRobotClient->getDistance(angle);
 }
 
 void RobotControlDialog::on_robotForwardBtn_clicked()
@@ -132,4 +138,10 @@ void RobotControlDialog::cameraRightBtn_pressed()
 void RobotControlDialog::setDistance(float distance)
 {
 	this->ui->DistanceValueLabel->setNum(distance);
+}
+
+void RobotControlDialog::setRobotDistance(int angle)
+{
+	double distance = getRobotDistance(angle);
+	this->ui->RealDistanceValueLabel->setNum(distance);
 }
