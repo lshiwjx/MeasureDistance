@@ -115,8 +115,8 @@ void MyLabel::setmPixmap(QPixmap &pixmap)
 	if(!mImage.isNull())
 	{
 		frame = QImage2cvMat(mImage);
-    	namedWindow("beforeFilter");
-    	imshow("beforeFilter", frame);
+    	//namedWindow("beforeFilter");
+    	//imshow("beforeFilter", frame);
 		cv::GaussianBlur(frame, frame, cv::Size(5, 5), 0, 0, 4);
 		//cv::filter2D(frame, frame, frame.depth(), kernel);
 		//cv::medianBlur(frame, frame, 3);
