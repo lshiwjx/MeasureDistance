@@ -83,10 +83,6 @@ void MyLabel::updateFrame()
 
 }
 
-void MyLabel::boundingRect(QRectF rect, bool show)
-{
-    mRect = rect;
-}
 
 cv::Mat QImage2cvMat(QImage image)
 {
@@ -114,8 +110,19 @@ void MyLabel::setmPixmap(QPixmap &pixmap)
 {
     mPixmap = pixmap;
 	mImage = mPixmap.toImage();
+	//cv::Mat kernel(3, 3, CV_32F, Scalar(-1));
+	//kernel.at<float>(1, 1) = 8.9;
 	if(!mImage.isNull())
-	    frame = QImage2cvMat(mImage);
+	{
+		frame = QImage2cvMat(mImage);
+    	namedWindow("beforeFilter");
+    	imshow("beforeFilter", frame);
+		cv::GaussianBlur(frame, frame, cv::Size(5, 5), 0, 0, 4);
+		//cv::filter2D(frame, frame, frame.depth(), kernel);
+		//cv::medianBlur(frame, frame, 3);
+		//cv::bilateralFilter(frame, frame, 3, 50, 50, 4);
+	}
+	    
 }
 void MyLabel::paintEvent(QPaintEvent *event)
 {

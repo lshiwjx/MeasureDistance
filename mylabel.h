@@ -28,7 +28,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 public slots:
-    void boundingRect(QRectF rect, bool show = true);
+    //void boundingRect(QRectF rect, bool show = true);
 	void updateFrame();
 private:
     QRectF mRect;
