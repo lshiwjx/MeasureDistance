@@ -16,7 +16,8 @@ CameraLoginDialog::~CameraLoginDialog()
 
 void CameraLoginDialog::on_pushButton_clicked()
 {
-    mpCamera->setCameraIp(this->ui->lineEdit->text());
+	if(this->ui->lineEdit->text() != "")
+        mpCamera->setCameraIp(this->ui->lineEdit->text());
     this->accept();
 }
 

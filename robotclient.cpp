@@ -5,12 +5,8 @@ RobotClient::RobotClient()
     :pClient(std::make_shared<ArClientBase>()),
 	myHandleLaserFeedbackDataCB(this,&RobotClient::handleLaserFeedbackData)
 {
-	if (pClient->dataExists("getLaserRelatedPos"))
-	{
-		pClient->addHandler("getLaserRelatedPos", &myHandleLaserFeedbackDataCB);
-		pClient->request("getLaserRelatedPos", 100);
-	}
-    mRobotIp = "";
+    //bool ret = pClient->addHandler("getLaserRelatedPos", &myHandleLaserFeedbackDataCB);
+	//pClient->request("getLaserRelatedPos", 100);
 }
 
 RobotClient::~RobotClient()
@@ -43,6 +39,9 @@ bool RobotClient::clientConnect(int qargc, char** qargv)
 
     //connect
     bool ret = connector.connectClient(pClient.get());
+
+	bool ret1 = pClient->addHandler("getLaserRelatedPos", &myHandleLaserFeedbackDataCB);
+
     return (ret);
 }
 
@@ -115,10 +114,11 @@ void RobotClient::setRadio(double radio)
 double RobotClient::getDistance(int qangle)
 {
 	ArNetPacket laserPacket;
-	int dist = 0;
-	int angle = 0;
-	this->pClient->requestOnce("getLaserRelatedPos", &laserPacket);
-	short numOfData = laserPacket.bufToByte2();
+	mAngle = qangle;
+	//int dist = 0;
+	//int angle = 0;
+	this->pClient->requestOnce("getLaserRelatedPos");//, &laserPacket);
+	/*short numOfData = laserPacket.bufToByte2();
 	if (numOfData > 0)
 	{
 		for (int i = 0; i < numOfData; i++)
@@ -130,8 +130,8 @@ double RobotClient::getDistance(int qangle)
 				return dist;
 			}
 		}
-	}
-	return 0.0;
+	}*/
+	return mDist;
 }
 
 bool RobotClient::isInited() const
@@ -148,8 +148,22 @@ void RobotClient::handleLaserFeedbackData(ArNetPacket * packet)
 {
 	int dist = 0;
 	int angle = 0;
-
-	myBuffer.clear();
+	//mDist = 0;
+	short numOfData = packet->bufToByte2();
+	if (numOfData > 0)
+	{
+		for (int i = 0; i < numOfData; i++)
+		{
+			dist = packet->bufToByte4();
+			angle = packet->bufToByte4();
+			myBuffer[angle] = dist;
+			if (angle / 100 ==  mAngle)
+			{
+				mDist = dist;
+			}
+        }
+	}
+	/*myBuffer.clear();
 
 	int myNumCnt = packet->bufToByte2();
 
@@ -161,5 +175,6 @@ void RobotClient::handleLaserFeedbackData(ArNetPacket * packet)
 			angle = packet->bufToByte4();
 			myBuffer[angle] = dist;
 		}
-	}
+	}*/
+
 }

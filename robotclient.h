@@ -39,10 +39,12 @@ protected:
 	void handleLaserFeedbackData(ArNetPacket* packet);
 	std::map<int, int> myBuffer;
 private:
-    std::string mRobotIp = "";
+    std::string mRobotIp = "192.168.191.2";
     double mSpeed = 0;
     double mRadio = 0;
     bool Inited = false;
+	double mDist = 0;
+	int mAngle = 0;
 };
 
 #endif // ROBOTCLIENT_H

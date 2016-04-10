@@ -17,13 +17,14 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::on_pushButton_clicked()
 {
-    this->mRobotClient->setInited(true);
+    //this->mRobotClient->setInited(true);
     this->reject();
     this->close();
 }
 
 void LoginDialog::on_pushButton_2_clicked()
 {
-    mRobotClient->setRobotIp(ui->lineEdit->text().toStdString());
+	if(ui->lineEdit->text() != "")
+        mRobotClient->setRobotIp(ui->lineEdit->text().toStdString());
     accept();
 }

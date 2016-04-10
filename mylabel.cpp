@@ -61,7 +61,7 @@ void MyLabel::updateFrame()
 {
 	rect = tracker.update(frame);
 	double num = rect.y + rect.height - 288;
-	emit setDistance(0.1169*num*num - 60.93*num + 9970);
+	emit setDistance(-21.77*num+8531);// 0.1169*num*num - 60.93*num + 9970);
 	//this->mTimer.stop();
 	/*if (this->inited)
 		if (tracker.update(frame, rect))
@@ -74,10 +74,11 @@ void MyLabel::updateFrame()
 			msbox.exec();
 		}*/
 	//this->mTimer.start();
-	double y = (rect.x + rect.width / 2 - 352);
-	double x = (576 - rect.y - rect.height);
-	double radio =  y/x ;
-	int angle = atan(radio) * 180 / 3.1415926;
+	//double y = (rect.x + rect.width / 2 - 352);
+	//double x = (576 - rect.y - rect.height);
+	//double radio =  y/x ;
+	//int angle = atan(radio) * 180 / 3.1415926;
+	int angle = -((rect.x + rect.width / 2) / 704 * 50 - 25);
 	emit requestDistance(angle);
 
 }
