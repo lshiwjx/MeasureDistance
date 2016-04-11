@@ -113,22 +113,15 @@ void RobotClient::setRadio(double radio)
 
 double RobotClient::getDistance(int qangle)
 {
+	//int sort[3],j=0;
 	ArNetPacket laserPacket;
-	mAngle = qangle;
-	//int dist = 0;
-	//int angle = 0;
 	this->pClient->requestOnce("getLaserRelatedPos");//, &laserPacket);
-	/*short numOfData = laserPacket.bufToByte2();
-	if (numOfData > 0)
+	mAngle = qangle;
+	/*for (int i = 0; i < 10 && j < 3;i++)
 	{
-		for (int i = 0; i < numOfData; i++)
+		if (myBuffer[qangle*100])
 		{
-			dist = laserPacket.bufToByte4();
-			angle = laserPacket.bufToByte4();
-			if (angle / 100 == qangle)
-			{
-				return dist;
-			}
+			sort[j++] = myBuffer[qangle*100];
 		}
 	}*/
 	return mDist;
@@ -148,7 +141,10 @@ void RobotClient::handleLaserFeedbackData(ArNetPacket * packet)
 {
 	int dist = 0;
 	int angle = 0;
-	//mDist = 0;
+	int num = 0;
+	int distSum = 0;
+	//myBuffer.clear();
+
 	short numOfData = packet->bufToByte2();
 	if (numOfData > 0)
 	{
@@ -156,25 +152,19 @@ void RobotClient::handleLaserFeedbackData(ArNetPacket * packet)
 		{
 			dist = packet->bufToByte4();
 			angle = packet->bufToByte4();
-			myBuffer[angle] = dist;
-			if (angle / 100 ==  mAngle)
+			//myBuffer[angle] = dist;
+			if (angle / 100 == mAngle)
 			{
-				mDist = dist;
+				distSum += dist;
+				num++;
 			}
-        }
-	}
-	/*myBuffer.clear();
-
-	int myNumCnt = packet->bufToByte2();
-
-	if (myNumCnt > 0)
-	{
-		for (int i = 0; i < myNumCnt; i++)
-		{
-			dist = packet->bufToByte4();
-			angle = packet->bufToByte4();
-			myBuffer[angle] = dist;
+			if (angle / 100 > mAngle)
+				break;
 		}
-	}*/
+		if (num)
+			mDist = distSum / num;
+	}
+	else
+		mDist = 0;
 
 }

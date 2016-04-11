@@ -60,8 +60,11 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *event)
 void MyLabel::updateFrame()
 {
 	rect = tracker.update(frame);
-	double num = rect.y + rect.height - 288;
-	emit setDistance(-21.77*num+8531);// 0.1169*num*num - 60.93*num + 9970);
+	double pixNum = rect.y + rect.height - 288;
+	if (pixNum > 0)
+		emit setDistance(749800 * 1 / pixNum - 722.1);
+	else
+		emit setDistance(0);
 	//this->mTimer.stop();
 	/*if (this->inited)
 		if (tracker.update(frame, rect))
@@ -78,8 +81,8 @@ void MyLabel::updateFrame()
 	//double x = (576 - rect.y - rect.height);
 	//double radio =  y/x ;
 	//int angle = atan(radio) * 180 / 3.1415926;
-	int angle = -((rect.x + rect.width / 2) / 704 * 50 - 25);
-	emit requestDistance(angle);
+	int laserAngle = -((rect.x + rect.width / 2) / 704 * 50 - 25);
+	emit requestDistance(laserAngle);
 
 }
 

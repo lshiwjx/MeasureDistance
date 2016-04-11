@@ -37,7 +37,7 @@ public:
 protected:
 	ArFunctor1C<RobotClient, ArNetPacket*> myHandleLaserFeedbackDataCB;
 	void handleLaserFeedbackData(ArNetPacket* packet);
-	std::map<int, int> myBuffer;
+	//std::map<int, int> myBuffer;
 private:
     std::string mRobotIp = "192.168.191.2";
     double mSpeed = 0;
