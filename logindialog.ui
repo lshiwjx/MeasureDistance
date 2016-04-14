@@ -31,11 +31,15 @@
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="1">
     <widget class="QFrame" name="frame">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">#frame{
 
 border-image:url(E:/ShiLei/code/qtForVS/pic/1.jpg);
-border-radius: 40px;
+border-radius:70px;
+padding:30px
 }
 QPushButton#pushButton,QPushButton#pushButton_2{
 	font: 75 italic 9pt &quot;Arial&quot;;
@@ -46,7 +50,18 @@ QPushButton#pushButton,QPushButton#pushButton_2{
 QPushButton#pushButton:hover ,QPushButton#pushButton_2:hover                                               
 {
     background: rgba(30,144,255,0.7);                         
-}</string>
+}
+QLineEdit
+{
+    border-radius:10px;
+    border:2px;
+    background:rgba(255,255,255,0.1);
+}
+QLineEdit:focus
+{
+    background:rgba(255,255,255,1);
+}
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -54,60 +69,8 @@ QPushButton#pushButton:hover ,QPushButton#pushButton_2:hover
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="lineEdit"/>
-      </item>
-      <item row="5" column="1">
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="4" column="1">
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>OK</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="1" column="1">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
        <widget class="QLabel" name="label">
         <property name="styleSheet">
          <string notr="true">font: 75 italic 9pt &quot;Arial&quot;;
@@ -130,11 +93,55 @@ color:rgb(224, 240, 255)</string>
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+font: 75 italic 9pt &quot;Arial&quot;;
+color:rgb(224, 240, 255);
+}
+QLineEdit:focus{
+color:rgb(0,0,0);
+}</string>
+        </property>
+        <property name="text">
+         <string>192.168.191.2</string>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>OK</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>lineEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -20,7 +20,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
@@ -29,13 +29,11 @@ class Ui_LoginDialog
 public:
     QGridLayout *gridLayout_2;
     QFrame *frame;
-    QGridLayout *gridLayout;
-    QLineEdit *lineEdit;
-    QPushButton *pushButton;
-    QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton_2;
-    QSpacerItem *horizontalSpacer_2;
+    QVBoxLayout *verticalLayout;
     QLabel *label;
+    QLineEdit *lineEdit;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton;
 
     void setupUi(QDialog *LoginDialog)
     {
@@ -51,10 +49,12 @@ public:
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         frame = new QFrame(LoginDialog);
         frame->setObjectName(QStringLiteral("frame"));
+        frame->setLayoutDirection(Qt::LeftToRight);
         frame->setStyleSheet(QLatin1String("#frame{\n"
 "\n"
 "border-image:url(E:/ShiLei/code/qtForVS/pic/1.jpg);\n"
-"border-radius: 40px;\n"
+"border-radius:70px;\n"
+"padding:30px\n"
 "}\n"
 "QPushButton#pushButton,QPushButton#pushButton_2{\n"
 "	font: 75 italic 9pt \"Arial\";\n"
@@ -65,35 +65,22 @@ public:
 "QPushButton#pushButton:hover ,QPushButton#pushButton_2:hover                                               \n"
 "{\n"
 "    background: rgba(30,144,255,0.7);                         \n"
-"}"));
+"}\n"
+"QLineEdit\n"
+"{\n"
+"    border-radius:10px;\n"
+"    border:2px;\n"
+"    background:rgba(255,255,255,0.1);\n"
+"}\n"
+"QLineEdit:focus\n"
+"{\n"
+"    background:rgba(255,255,255,1);\n"
+"}\n"
+""));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
-        gridLayout = new QGridLayout(frame);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        lineEdit = new QLineEdit(frame);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-
-        gridLayout->addWidget(lineEdit, 3, 1, 1, 1);
-
-        pushButton = new QPushButton(frame);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-
-        gridLayout->addWidget(pushButton, 5, 1, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer, 3, 0, 1, 1);
-
-        pushButton_2 = new QPushButton(frame);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setStyleSheet(QStringLiteral(""));
-
-        gridLayout->addWidget(pushButton_2, 4, 1, 1, 1);
-
-        horizontalSpacer_2 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_2, 3, 2, 1, 1);
-
+        verticalLayout = new QVBoxLayout(frame);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label = new QLabel(frame);
         label->setObjectName(QStringLiteral("label"));
         label->setStyleSheet(QLatin1String("font: 75 italic 9pt \"Arial\";\n"
@@ -103,11 +90,38 @@ public:
         label->setAlignment(Qt::AlignCenter);
         label->setWordWrap(false);
 
-        gridLayout->addWidget(label, 1, 1, 1, 1);
+        verticalLayout->addWidget(label);
+
+        lineEdit = new QLineEdit(frame);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setStyleSheet(QLatin1String("QLineEdit{\n"
+"font: 75 italic 9pt \"Arial\";\n"
+"color:rgb(224, 240, 255);\n"
+"}\n"
+"QLineEdit:focus{\n"
+"color:rgb(0,0,0);\n"
+"}"));
+        lineEdit->setFrame(true);
+        lineEdit->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(lineEdit);
+
+        pushButton_2 = new QPushButton(frame);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setStyleSheet(QStringLiteral(""));
+
+        verticalLayout->addWidget(pushButton_2);
+
+        pushButton = new QPushButton(frame);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        verticalLayout->addWidget(pushButton);
 
 
         gridLayout_2->addWidget(frame, 0, 1, 1, 1);
 
+        QWidget::setTabOrder(pushButton_2, pushButton);
+        QWidget::setTabOrder(pushButton, lineEdit);
 
         retranslateUi(LoginDialog);
 
@@ -117,9 +131,10 @@ public:
     void retranslateUi(QDialog *LoginDialog)
     {
         LoginDialog->setWindowTitle(QApplication::translate("LoginDialog", "Dialog", 0));
-        pushButton->setText(QApplication::translate("LoginDialog", "Cancel", 0));
-        pushButton_2->setText(QApplication::translate("LoginDialog", "OK", 0));
         label->setText(QApplication::translate("LoginDialog", "Robot IP", 0));
+        lineEdit->setText(QApplication::translate("LoginDialog", "192.168.191.2", 0));
+        pushButton_2->setText(QApplication::translate("LoginDialog", "OK", 0));
+        pushButton->setText(QApplication::translate("LoginDialog", "Cancel", 0));
     } // retranslateUi
 
 };

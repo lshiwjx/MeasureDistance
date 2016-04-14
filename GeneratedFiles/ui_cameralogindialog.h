@@ -14,12 +14,13 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
@@ -27,76 +28,138 @@ class Ui_CameraLoginDialog
 {
 public:
     QGridLayout *gridLayout;
-    QPushButton *pushButton_2;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout;
+    QLabel *label;
     QLineEdit *lineEdit;
-    QLineEdit *lineEditPassword;
+    QLabel *label_2;
     QLineEdit *lineEditUserName;
     QLabel *label_3;
-    QLabel *label_2;
-    QLabel *label;
-    QSpacerItem *horizontalSpacer;
-    QSpacerItem *horizontalSpacer_2;
+    QLineEdit *lineEditPassword;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
 
     void setupUi(QDialog *CameraLoginDialog)
     {
         if (CameraLoginDialog->objectName().isEmpty())
             CameraLoginDialog->setObjectName(QStringLiteral("CameraLoginDialog"));
-        CameraLoginDialog->resize(632, 392);
+        CameraLoginDialog->resize(500, 400);
         gridLayout = new QGridLayout(CameraLoginDialog);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        pushButton_2 = new QPushButton(CameraLoginDialog);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        gridLayout->addWidget(pushButton_2, 3, 3, 1, 1);
-
-        lineEdit = new QLineEdit(CameraLoginDialog);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-
-        gridLayout->addWidget(lineEdit, 0, 2, 1, 2);
-
-        lineEditPassword = new QLineEdit(CameraLoginDialog);
-        lineEditPassword->setObjectName(QStringLiteral("lineEditPassword"));
-
-        gridLayout->addWidget(lineEditPassword, 2, 2, 1, 2);
-
-        lineEditUserName = new QLineEdit(CameraLoginDialog);
-        lineEditUserName->setObjectName(QStringLiteral("lineEditUserName"));
-
-        gridLayout->addWidget(lineEditUserName, 1, 2, 1, 2);
-
-        label_3 = new QLabel(CameraLoginDialog);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        gridLayout->addWidget(label_3, 2, 1, 1, 1);
-
-        label_2 = new QLabel(CameraLoginDialog);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        gridLayout->addWidget(label_2, 1, 1, 1, 1);
-
-        label = new QLabel(CameraLoginDialog);
+        frame = new QFrame(CameraLoginDialog);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setStyleSheet(QLatin1String("#frame\n"
+"{\n"
+"   border-image:url(E:/ShiLei/code/qtForVS/pic/1.jpg);\n"
+"   border-radius:70px;\n"
+"   padding:50px\n"
+"}\n"
+"QPushButton#pushButton,QPushButton#pushButton_2{\n"
+"	font: 75 italic 9pt \"Arial\";\n"
+"    border:0px;\n"
+"    background:rgba(255,255,255,0);\n"
+"	color: rgb(228, 243, 255);\n"
+"}\n"
+"QPushButton#pushButton:hover ,QPushButton#pushButton_2:hover                                               \n"
+"{\n"
+"    background: rgba(30,144,255,0.7);                         \n"
+"}\n"
+"QLineEdit\n"
+"{\n"
+"    border-radius:10px;\n"
+"    border:2px;\n"
+"    background:rgba(255,255,255,0.1);\n"
+"\n"
+"}\n"
+"QLineEdit:focus\n"
+"{\n"
+"    background:rgba(255,255,255,1);\n"
+"}\n"
+""));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        verticalLayout = new QVBoxLayout(frame);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        label = new QLabel(frame);
         label->setObjectName(QStringLiteral("label"));
+        label->setStyleSheet(QLatin1String("font: 75 italic 9pt \"Arial\";\n"
+"color:rgb(224, 240, 255)"));
+        label->setAlignment(Qt::AlignCenter);
 
-        gridLayout->addWidget(label, 0, 1, 1, 1);
+        verticalLayout->addWidget(label);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        lineEdit = new QLineEdit(frame);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setContextMenuPolicy(Qt::NoContextMenu);
+        lineEdit->setStyleSheet(QLatin1String("QLineEdit{\n"
+"font: 75 italic 9pt \"Arial\";\n"
+"color:rgb(224, 240, 255);\n"
+"}\n"
+"QLineEdit:focus{\n"
+"color:rgb(0,0,0);\n"
+"}"));
+        lineEdit->setAlignment(Qt::AlignCenter);
 
-        gridLayout->addItem(horizontalSpacer, 1, 0, 1, 1);
+        verticalLayout->addWidget(lineEdit);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        label_2 = new QLabel(frame);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setStyleSheet(QLatin1String("font: 75 italic 9pt \"Arial\";\n"
+"color:rgb(224, 240, 255)"));
+        label_2->setAlignment(Qt::AlignCenter);
 
-        gridLayout->addItem(horizontalSpacer_2, 1, 4, 1, 1);
+        verticalLayout->addWidget(label_2);
 
-        pushButton = new QPushButton(CameraLoginDialog);
+        lineEditUserName = new QLineEdit(frame);
+        lineEditUserName->setObjectName(QStringLiteral("lineEditUserName"));
+        lineEditUserName->setStyleSheet(QLatin1String("QLineEdit{\n"
+"font: 75 italic 9pt \"Arial\";\n"
+"color:rgb(224, 240, 255);\n"
+"}\n"
+"QLineEdit:focus{\n"
+"color:rgb(0,0,0);\n"
+"}"));
+        lineEditUserName->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(lineEditUserName);
+
+        label_3 = new QLabel(frame);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setStyleSheet(QLatin1String("font: 75 italic 9pt \"Arial\";\n"
+"color:rgb(224, 240, 255)"));
+        label_3->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(label_3);
+
+        lineEditPassword = new QLineEdit(frame);
+        lineEditPassword->setObjectName(QStringLiteral("lineEditPassword"));
+        lineEditPassword->setStyleSheet(QLatin1String("QLineEdit{\n"
+"font: 75 italic 9pt \"Arial\";\n"
+"color:rgb(224, 240, 255);\n"
+"}\n"
+"QLineEdit:focus{\n"
+"color:rgb(0,0,0);\n"
+"}"));
+        lineEditPassword->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(lineEditPassword);
+
+        pushButton = new QPushButton(frame);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
-        gridLayout->addWidget(pushButton, 3, 1, 1, 1);
+        verticalLayout->addWidget(pushButton);
 
-        QWidget::setTabOrder(lineEdit, pushButton);
-        QWidget::setTabOrder(pushButton, lineEditUserName);
+        pushButton_2 = new QPushButton(frame);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        verticalLayout->addWidget(pushButton_2);
+
+
+        gridLayout->addWidget(frame, 0, 0, 1, 1);
+
+        QWidget::setTabOrder(pushButton_2, lineEdit);
+        QWidget::setTabOrder(lineEdit, lineEditUserName);
         QWidget::setTabOrder(lineEditUserName, lineEditPassword);
-        QWidget::setTabOrder(lineEditPassword, pushButton_2);
 
         retranslateUi(CameraLoginDialog);
 
@@ -106,11 +169,14 @@ public:
     void retranslateUi(QDialog *CameraLoginDialog)
     {
         CameraLoginDialog->setWindowTitle(QApplication::translate("CameraLoginDialog", "Dialog", 0));
-        pushButton_2->setText(QApplication::translate("CameraLoginDialog", "\345\217\226\346\266\210", 0));
-        label_3->setText(QApplication::translate("CameraLoginDialog", "Password", 0));
-        label_2->setText(QApplication::translate("CameraLoginDialog", "User Name", 0));
         label->setText(QApplication::translate("CameraLoginDialog", "Camera IP", 0));
-        pushButton->setText(QApplication::translate("CameraLoginDialog", "\347\241\256\345\256\232", 0));
+        lineEdit->setText(QApplication::translate("CameraLoginDialog", "169.254.0.99", 0));
+        label_2->setText(QApplication::translate("CameraLoginDialog", "User Name", 0));
+        lineEditUserName->setText(QApplication::translate("CameraLoginDialog", "root", 0));
+        label_3->setText(QApplication::translate("CameraLoginDialog", "Password", 0));
+        lineEditPassword->setText(QApplication::translate("CameraLoginDialog", "123456", 0));
+        pushButton->setText(QApplication::translate("CameraLoginDialog", "OK", 0));
+        pushButton_2->setText(QApplication::translate("CameraLoginDialog", "Cancel", 0));
     } // retranslateUi
 
 };

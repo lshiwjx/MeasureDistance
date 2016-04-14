@@ -7,6 +7,9 @@ CameraLoginDialog::CameraLoginDialog(QWidget *parent, CameraControl *qmpCamera) 
     ui(new Ui::CameraLoginDialog)
 {
     ui->setupUi(this);
+	setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+	setAttribute(Qt::WA_TranslucentBackground);
+	ui->lineEditPassword->setEchoMode(QLineEdit::EchoMode::PasswordEchoOnEdit);
 }
 
 CameraLoginDialog::~CameraLoginDialog()
