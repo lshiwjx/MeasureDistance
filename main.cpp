@@ -24,9 +24,9 @@ int main(int argc, char **argv)
         login.show();
 		if (login.exec() == login.Accepted)
         {
-            if(mRobotClient.clientConnect(argc, argv))
+            if(true)//mRobotClient.clientConnect(argc, argv))
             {
-                mRobotClient.pClient->runAsync();
+                //mRobotClient.pClient->runAsync();
                 control.show();
                 mRobotClient.setInited(true);
             }

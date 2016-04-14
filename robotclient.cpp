@@ -33,9 +33,9 @@ bool RobotClient::clientConnect(int qargc, char** qargv)
     //mRobotIp.copy(charIP,mRobotIp.length(),0);
     //connector.myHost=charIP;
     //pConnector->myHost = charIP;
-    QMessageBox box;
-    box.setText(QString(connector.myHost));
-    box.exec();
+    //QMessageBox box;
+    //box.setText(QString(connector.myHost));
+    //box.exec();
 
     //connect
     bool ret = connector.connectClient(pClient.get());

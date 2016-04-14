@@ -271,10 +271,15 @@
     <ClCompile Include="mylabel.cpp" />
     <ClCompile Include="mymaplabel.cpp" />
     <ClCompile Include="myplotlabel.cpp" />
+    <ClCompile Include="Release\moc_cameralogindialog.cpp" />
+    <ClCompile Include="Release\moc_logindialog.cpp" />
+    <ClCompile Include="Release\moc_mylabel.cpp" />
     <ClCompile Include="Release\moc_mymaplabel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Release\moc_myplotlabel.cpp" />
+    <ClCompile Include="Release\moc_robotcontroldialog.cpp" />
     <ClCompile Include="robotclient.cpp" />
     <ClCompile Include="robotcontroldialog.cpp" />
     <ClCompile Include="src\fhog.cpp" />
