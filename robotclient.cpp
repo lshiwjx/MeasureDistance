@@ -151,15 +151,16 @@ void RobotClient::handleLaserFeedbackData(ArNetPacket * packet)
 		for (int i = 0; i < numOfData; i++)
 		{
 			dist = packet->bufToByte4();
-			angle = packet->bufToByte4();
-			//myBuffer[angle] = dist;
-			if (angle / 100 == mAngle)
+			angle = packet->bufToByte4()/100;
+			//myBuffer[angle/100] = dist;
+			laserDitance[angle+90] = dist/25;
+			if (angle == mAngle)
 			{
 				distSum += dist;
 				num++;
 			}
-			if (angle / 100 > mAngle)
-				break;
+			//if (angle > mAngle)
+			//	break;
 		}
 		if (num)
 			mDist = distSum / num;

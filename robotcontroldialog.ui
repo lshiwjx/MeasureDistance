@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1192</width>
+    <width>1278</width>
     <height>800</height>
    </rect>
   </property>
@@ -38,15 +38,24 @@
    <item row="0" column="3">
     <layout class="QGridLayout" name="SonarLayout">
      <item row="1" column="1">
-      <widget class="QLabel" name="label">
+      <widget class="MyMapLabel" name="MapLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
-         <width>100</width>
-         <height>100</height>
+         <width>400</width>
+         <height>400</height>
         </size>
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
        </property>
       </widget>
      </item>
@@ -169,7 +178,7 @@
       </layout>
      </item>
      <item>
-      <widget class="myPlotLabel" name="PlotLabel">
+      <widget class="MyPlotLabel" name="PlotLabel">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>
@@ -256,7 +265,7 @@
         <enum>QFrame::Box</enum>
        </property>
        <property name="lineWidth">
-        <number>1</number>
+        <number>0</number>
        </property>
        <property name="text">
         <string/>
@@ -430,7 +439,12 @@
    <header>mylabel.h</header>
   </customwidget>
   <customwidget>
-   <class>myPlotLabel</class>
+   <class>MyMapLabel</class>
+   <extends>QLabel</extends>
+   <header>mymaplabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyPlotLabel</class>
    <extends>QLabel</extends>
    <header location="global">myplotlabel.h</header>
   </customwidget>

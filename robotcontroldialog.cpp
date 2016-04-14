@@ -12,6 +12,7 @@ RobotControlDialog::RobotControlDialog(QWidget *parent, RobotClient *qRobotClien
     connect(&timer,SIGNAL(timeout()),this,SLOT(saveImage()));
 	connect(this->ui->figureLabel, SIGNAL(setDistance(float)), this, SLOT(setDistance(float)));
 	connect(this->ui->figureLabel, SIGNAL(requestDistance(int)), this, SLOT(setRobotDistance(int)));
+
 //	connect(this->ui->cameraUpBtn, SIGNAL(pressed()), this, SLOT(cameraUpBtn_pressed()));
 //	connect(this->ui->cameraDownBtn, SIGNAL(pressed()), this, SLOT(cameraDownBtn_pressed()));
 //	connect(this->ui->cameraLeftBtn, SIGNAL(pressed()), this, SLOT(cameraLeftBtn_pressed()));
@@ -150,4 +151,10 @@ void RobotControlDialog::setRobotDistance(int angle)
 	this->ui->RealDistanceValueLabel->setNum(distance);
 	this->ui->PlotLabel->mRealdistQueue.enqueue(distance);
 	this->ui->PlotLabel->mRealdistQueue.dequeue();
+	this->ui->MapLabel->update();
+	for (int i = 0; i < 181; i++)
+	{
+		this->ui->MapLabel->mLaserDitance[i].setX(i);//250 + this->mpRobotClient->laserDitance[i]*cos((180-i))*0.5);
+		this->ui->MapLabel->mLaserDitance[i].setY(400 - mpRobotClient->laserDitance[i]);//500 - this->mpRobotClient->laserDitance[i] * sin((180 - i))*0.5);
+	}
 }

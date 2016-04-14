@@ -23,6 +23,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <myplotlabel.h>
 #include "mylabel.h"
+#include "mymaplabel.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -31,7 +32,7 @@ class Ui_RobotControlDialog
 public:
     QGridLayout *gridLayout;
     QGridLayout *SonarLayout;
-    QLabel *label;
+    MyMapLabel *MapLabel;
     QSpacerItem *verticalSpacer;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer;
@@ -42,7 +43,7 @@ public:
     QLabel *DistanceValueLabel;
     QLabel *RealDistanceLable;
     QLabel *RealDistanceValueLabel;
-    myPlotLabel *PlotLabel;
+    MyPlotLabel *PlotLabel;
     QGridLayout *figureLayout;
     QSpacerItem *verticalSpacerBottom;
     QSpacerItem *verticalSpacerTop;
@@ -74,7 +75,7 @@ public:
         if (RobotControlDialog->objectName().isEmpty())
             RobotControlDialog->setObjectName(QStringLiteral("RobotControlDialog"));
         RobotControlDialog->setEnabled(true);
-        RobotControlDialog->resize(1192, 800);
+        RobotControlDialog->resize(1278, 800);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -88,11 +89,17 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         SonarLayout = new QGridLayout();
         SonarLayout->setObjectName(QStringLiteral("SonarLayout"));
-        label = new QLabel(RobotControlDialog);
-        label->setObjectName(QStringLiteral("label"));
-        label->setMinimumSize(QSize(100, 100));
+        MapLabel = new MyMapLabel(RobotControlDialog);
+        MapLabel->setObjectName(QStringLiteral("MapLabel"));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(MapLabel->sizePolicy().hasHeightForWidth());
+        MapLabel->setSizePolicy(sizePolicy1);
+        MapLabel->setMinimumSize(QSize(400, 400));
+        MapLabel->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
 
-        SonarLayout->addWidget(label, 1, 1, 1, 1);
+        SonarLayout->addWidget(MapLabel, 1, 1, 1, 1);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -121,11 +128,11 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         DistanceLabel = new QLabel(RobotControlDialog);
         DistanceLabel->setObjectName(QStringLiteral("DistanceLabel"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(DistanceLabel->sizePolicy().hasHeightForWidth());
-        DistanceLabel->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(DistanceLabel->sizePolicy().hasHeightForWidth());
+        DistanceLabel->setSizePolicy(sizePolicy2);
         DistanceLabel->setMinimumSize(QSize(0, 0));
 
         horizontalLayout_2->addWidget(DistanceLabel);
@@ -137,11 +144,11 @@ public:
 
         RealDistanceLable = new QLabel(RobotControlDialog);
         RealDistanceLable->setObjectName(QStringLiteral("RealDistanceLable"));
-        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(RealDistanceLable->sizePolicy().hasHeightForWidth());
-        RealDistanceLable->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(RealDistanceLable->sizePolicy().hasHeightForWidth());
+        RealDistanceLable->setSizePolicy(sizePolicy3);
         RealDistanceLable->setMinimumSize(QSize(0, 0));
 
         horizontalLayout_2->addWidget(RealDistanceLable);
@@ -154,13 +161,10 @@ public:
 
         CompareLayout->addLayout(horizontalLayout_2);
 
-        PlotLabel = new myPlotLabel(RobotControlDialog);
+        PlotLabel = new MyPlotLabel(RobotControlDialog);
         PlotLabel->setObjectName(QStringLiteral("PlotLabel"));
-        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Minimum);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(PlotLabel->sizePolicy().hasHeightForWidth());
-        PlotLabel->setSizePolicy(sizePolicy3);
+        sizePolicy1.setHeightForWidth(PlotLabel->sizePolicy().hasHeightForWidth());
+        PlotLabel->setSizePolicy(sizePolicy1);
         PlotLabel->setMinimumSize(QSize(400, 130));
         PlotLabel->setBaseSize(QSize(400, 400));
 
@@ -183,13 +187,13 @@ public:
 
         figureLabel = new MyLabel(RobotControlDialog);
         figureLabel->setObjectName(QStringLiteral("figureLabel"));
-        sizePolicy1.setHeightForWidth(figureLabel->sizePolicy().hasHeightForWidth());
-        figureLabel->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(figureLabel->sizePolicy().hasHeightForWidth());
+        figureLabel->setSizePolicy(sizePolicy2);
         figureLabel->setMinimumSize(QSize(100, 100));
         figureLabel->setBaseSize(QSize(352, 240));
         figureLabel->setMouseTracking(true);
         figureLabel->setFrameShape(QFrame::Box);
-        figureLabel->setLineWidth(1);
+        figureLabel->setLineWidth(0);
         figureLabel->setTextFormat(Qt::AutoText);
         figureLabel->setAlignment(Qt::AlignCenter);
 
@@ -322,7 +326,7 @@ public:
 
     void retranslateUi(QDialog *RobotControlDialog)
     {
-        label->setText(QString());
+        MapLabel->setText(QString());
         DistanceLabel->setText(QApplication::translate("RobotControlDialog", "\350\267\235\347\246\273", 0));
         DistanceValueLabel->setText(QString());
         RealDistanceLable->setText(QApplication::translate("RobotControlDialog", "\345\256\236\351\231\205\350\267\235\347\246\273", 0));

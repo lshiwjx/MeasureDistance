@@ -37,6 +37,21 @@
     <Filter Include="UI">
       <UniqueIdentifier>{a18d143e-962f-46dc-81f5-c66c4c9b4bfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{f10641a4-1931-4165-a25e-53490ef454c3}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{edb86c1c-bf1a-48a2-b182-d3eac6e346cc}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cameracontrol.cpp">
@@ -69,20 +84,29 @@
     <ClCompile Include="myplotlabel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mymaplabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_mymaplabel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_mymaplabel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
     <ClCompile Include="ui\moc_cameralogindialog.cpp">
-      <Filter>UI</Filter>
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="ui\moc_logindialog.cpp">
-      <Filter>UI</Filter>
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="ui\moc_mylabel.cpp">
-      <Filter>UI</Filter>
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="ui\moc_myplotlabel.cpp">
-      <Filter>UI</Filter>
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="ui\moc_robotcontroldialog.cpp">
-      <Filter>UI</Filter>
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +149,9 @@
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="myplotlabel.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mymaplabel.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
