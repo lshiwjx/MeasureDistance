@@ -262,33 +262,21 @@
   <ItemGroup>
     <ClCompile Include="cameracontrol.cpp" />
     <ClCompile Include="cameralogindialog.cpp" />
-    <ClCompile Include="Debug\moc_mymaplabel.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="debug\moc_cameralogindialog.cpp" />
+    <ClCompile Include="debug\moc_logindialog.cpp" />
+    <ClCompile Include="debug\moc_mylabel.cpp" />
+    <ClCompile Include="debug\moc_mymaplabel.cpp" />
+    <ClCompile Include="debug\moc_myplotlabel.cpp" />
+    <ClCompile Include="debug\moc_robotcontroldialog.cpp" />
     <ClCompile Include="logindialog.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mylabel.cpp" />
     <ClCompile Include="mymaplabel.cpp" />
     <ClCompile Include="myplotlabel.cpp" />
-    <ClCompile Include="Release\moc_cameralogindialog.cpp" />
-    <ClCompile Include="Release\moc_logindialog.cpp" />
-    <ClCompile Include="Release\moc_mylabel.cpp" />
-    <ClCompile Include="Release\moc_mymaplabel.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Release\moc_myplotlabel.cpp" />
-    <ClCompile Include="Release\moc_robotcontroldialog.cpp" />
     <ClCompile Include="robotclient.cpp" />
     <ClCompile Include="robotcontroldialog.cpp" />
     <ClCompile Include="src\fhog.cpp" />
     <ClCompile Include="src\kcftracker.cpp" />
-    <ClCompile Include="ui\moc_cameralogindialog.cpp" />
-    <ClCompile Include="ui\moc_logindialog.cpp" />
-    <ClCompile Include="ui\moc_mylabel.cpp" />
-    <ClCompile Include="ui\moc_myplotlabel.cpp" />
-    <ClCompile Include="ui\moc_robotcontroldialog.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cameracontrol.h" />
@@ -310,9 +298,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_AXCONTAINER_LIB -DQT_AXBASE_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG -DQT_DLL "-I." "-I.\Ar\INC" "-I.\opencv30x86VC12\include" "-I.\camerasource" "-I$(QTDIR)\include" "-I$(QTDIR)\include\ActiveQt" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtCore" "-I.\release" "-I$(QTDIR)\mkspecs\win32-msvc2015" "-I.\GeneratedFiles"</Command>
     </CustomBuild>
-    <ClInclude Include="ui\ui_cameralogindialog.h" />
-    <ClInclude Include="ui\ui_logindialog.h" />
-    <ClInclude Include="ui\ui_robotcontroldialog.h" />
     <CustomBuild Include="cameralogindialog.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_AXCONTAINER_LIB -DQT_AXBASE_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG -DQT_DLL  "-I$(SolutionDir)src" "-I$(SolutionDir)ui" "-I$(SolutionDir)opencv310\include" "-I$(SolutionDir)Ar\INC" "-I$(SolutionDir)camerasource" "-I$(QTDIR)\include" "-I$(QTDIR)\include\ActiveQt" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtCore" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\win32-msvc2015" "-I.\GeneratedFiles"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_AXCONTAINER_LIB -DQT_AXBASE_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG -DQT_DLL  "-I." "-I.\Ar\INC" "-I.\opencv30x86VC12\include" "-I.\camerasource" "-I$(QTDIR)\include" "-I$(QTDIR)\include\ActiveQt" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtCore" "-I.\release" "-I$(QTDIR)\mkspecs\win32-msvc2015" "-I.\GeneratedFiles"</Command>
@@ -385,6 +370,9 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_AXCONTAINER_LIB -DQT_AXBASE_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG -DQT_DLL "-I." "-I.\Ar\INC" "-I.\opencv30x86VC12\include" "-I.\camerasource" "-I$(QTDIR)\include" "-I$(QTDIR)\include\ActiveQt" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtCore" "-I.\release" "-I$(QTDIR)\mkspecs\win32-msvc2015" "-I.\GeneratedFiles"</Command>
     </CustomBuild>
+    <ClInclude Include="GeneratedFiles\ui_cameralogindialog.h" />
+    <ClInclude Include="GeneratedFiles\ui_logindialog.h" />
+    <ClInclude Include="GeneratedFiles\ui_robotcontroldialog.h" />
     <ClInclude Include="robotclient.h" />
     <CustomBuild Include="robotcontroldialog.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_AXCONTAINER_LIB -DQT_AXBASE_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG -DQT_DLL  "-I$(SolutionDir)src" "-I$(SolutionDir)ui" "-I$(SolutionDir)opencv310\include" "-I$(SolutionDir)Ar\INC" "-I$(SolutionDir)camerasource" "-I$(QTDIR)\include" "-I$(QTDIR)\include\ActiveQt" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtCore" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\win32-msvc2015" "-I.\GeneratedFiles"</Command>

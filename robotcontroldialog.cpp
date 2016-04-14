@@ -12,9 +12,11 @@ RobotControlDialog::RobotControlDialog(QWidget *parent, RobotClient *qRobotClien
     connect(&timer,SIGNAL(timeout()),this,SLOT(saveImage()));
 	connect(this->ui->figureLabel, SIGNAL(setDistance(float)), this, SLOT(setDistance(float)));
 	connect(this->ui->figureLabel, SIGNAL(requestDistance(int)), this, SLOT(setRobotDistance(int)));
+	setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+	setAttribute(Qt::WA_TranslucentBackground);
 
-//	connect(this->ui->cameraUpBtn, SIGNAL(pressed()), this, SLOT(cameraUpBtn_pressed()));
-//	connect(this->ui->cameraDownBtn, SIGNAL(pressed()), this, SLOT(cameraDownBtn_pressed()));
+//	connect(this->ui->pushButtonClose, SIGNAL(pressed()), this, SLOT(on_pushiButtonClose_pressed()));
+//	connect(this->ui->pushButtonMinimize, SIGNAL(pressed()), this, SLOT(on_pushButtonMinimize_pressed()));
 //	connect(this->ui->cameraLeftBtn, SIGNAL(pressed()), this, SLOT(cameraLeftBtn_pressed()));
 //	connect(this->ui->cameraRightBtn, SIGNAL(pressed()), this, SLOT(cameraRightBtn_pressed()));
 }
@@ -101,6 +103,16 @@ void RobotControlDialog::on_cameraOpenBtn_clicked()
     }
 }
 
+void RobotControlDialog::on_pushButtonClose_clicked()
+{
+	exit(0);
+}
+
+void RobotControlDialog::on_pushButtonMinimize_clicked()
+{
+	this->showMinimized();
+}
+
 void RobotControlDialog::saveImage()
 {
     this->mpCamera->getPixmap();
@@ -154,7 +166,7 @@ void RobotControlDialog::setRobotDistance(int angle)
 	this->ui->MapLabel->update();
 	for (int i = 0; i < 181; i++)
 	{
-		this->ui->MapLabel->mLaserDitance[i].setX(i);//250 + this->mpRobotClient->laserDitance[i]*cos((180-i))*0.5);
-		this->ui->MapLabel->mLaserDitance[i].setY(400 - mpRobotClient->laserDitance[i]);//500 - this->mpRobotClient->laserDitance[i] * sin((180 - i))*0.5);
+		//this->ui->MapLabel->mLaserDitance[i].setX(i);//250 + this->mpRobotClient->laserDitance[i]*cos((180-i))*0.5);
+		this->ui->MapLabel->mLaserDitance[i] = 400 - mpRobotClient->laserDitance[i];//500 - this->mpRobotClient->laserDitance[i] * sin((180 - i))*0.5);
 	}
 }

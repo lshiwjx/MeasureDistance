@@ -53,6 +53,10 @@ private slots:
 
     void on_cameraOpenBtn_clicked();
 
+	void on_pushButtonClose_clicked();
+
+	void on_pushButtonMinimize_clicked();
+
     void saveImage();
 
     void on_cameraStopBtn_clicked();

@@ -31,7 +31,7 @@ void MyPlotLabel::paintEvent(QPaintEvent * event)
 		else
 			painter.drawPoint(QPoint(i, dist));
 	}
-	painter.setPen(QPen(Qt::blue, 2));
+	painter.setPen(QPen(Qt::yellow, 2));
 	for (int i = 0; i < 400; i++)
 	{
 		dist = 120 - mVersiondistQueue.at(i) / 100;

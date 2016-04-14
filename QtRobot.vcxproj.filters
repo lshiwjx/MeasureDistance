@@ -34,23 +34,16 @@
     <Filter Include="Source Files\kcf">
       <UniqueIdentifier>{81eccbe1-1a38-4eee-b14f-567c0ce1d353}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI">
-      <UniqueIdentifier>{a18d143e-962f-46dc-81f5-c66c4c9b4bfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generated Files">
       <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
       <Extensions>moc;h;cpp</Extensions>
       <ParseFiles>true</ParseFiles>
     </Filter>
-    <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{f10641a4-1931-4165-a25e-53490ef454c3}</UniqueIdentifier>
-      <Extensions>cpp;moc</Extensions>
-      <SourceControlFiles>False</SourceControlFiles>
+    <Filter Include="Form Files\Debug">
+      <UniqueIdentifier>{c4b07960-5175-4326-811a-1278a31b9985}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{edb86c1c-bf1a-48a2-b182-d3eac6e346cc}</UniqueIdentifier>
-      <Extensions>cpp;moc</Extensions>
-      <SourceControlFiles>False</SourceControlFiles>
+    <Filter Include="Form Files\Release">
+      <UniqueIdentifier>{e94e901e-0a3a-45ef-84b0-c138c8e2a63b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -87,41 +80,23 @@
     <ClCompile Include="mymaplabel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_mymaplabel.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="debug\moc_cameralogindialog.cpp">
+      <Filter>Form Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Release\moc_mymaplabel.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="debug\moc_logindialog.cpp">
+      <Filter>Form Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="ui\moc_cameralogindialog.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="debug\moc_mylabel.cpp">
+      <Filter>Form Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="ui\moc_logindialog.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="debug\moc_mymaplabel.cpp">
+      <Filter>Form Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="ui\moc_mylabel.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="debug\moc_myplotlabel.cpp">
+      <Filter>Form Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="ui\moc_myplotlabel.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="ui\moc_robotcontroldialog.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_cameralogindialog.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_logindialog.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_mylabel.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_myplotlabel.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_robotcontroldialog.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="debug\moc_robotcontroldialog.cpp">
+      <Filter>Form Files\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,14 +118,14 @@
     <CustomBuild Include="robotcontroldialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="ui\ui_cameralogindialog.h">
-      <Filter>UI</Filter>
+    <ClInclude Include="GeneratedFiles\ui_cameralogindialog.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\ui_logindialog.h">
-      <Filter>UI</Filter>
+    <ClInclude Include="GeneratedFiles\ui_logindialog.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\ui_robotcontroldialog.h">
-      <Filter>UI</Filter>
+    <ClInclude Include="GeneratedFiles\ui_robotcontroldialog.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

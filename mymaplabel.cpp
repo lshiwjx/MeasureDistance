@@ -16,9 +16,9 @@ void MyMapLabel::paintEvent(QPaintEvent * event)
 	QLabel::paintEvent(event);
 
 	QPainter painter(this);
-	painter.setPen(QPen(Qt::black, 4));
+	painter.setPen(QPen(Qt::green, 4));
 	for (int i = 0; i < 362; i++)
 	{
-		painter.drawPoint(this->mLaserDitance[i/2]);
+		painter.drawPoint(i,this->mLaserDitance[i/2]);
 	}
 }

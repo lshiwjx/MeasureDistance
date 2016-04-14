@@ -12,7 +12,7 @@ public:
 	MyMapLabel(QWidget *parent);
 	~MyMapLabel();
 	void paintEvent(QPaintEvent *event);
-	QPoint mLaserDitance[181];
+	int mLaserDitance[181] = {0};
 private:
 	
 };
