@@ -138,10 +138,16 @@ void RobotControlDialog::cameraRightBtn_pressed()
 void RobotControlDialog::setDistance(float distance)
 {
 	this->ui->DistanceValueLabel->setNum(distance);
+	this->ui->PlotLabel->mVersiondistQueue.enqueue(distance);
+	this->ui->PlotLabel->mVersiondistQueue.dequeue();
+	if (distance != 0)
+		this->ui->PlotLabel->update();
 }
 
 void RobotControlDialog::setRobotDistance(int angle)
 {
 	double distance = getRobotDistance(angle);
 	this->ui->RealDistanceValueLabel->setNum(distance);
+	this->ui->PlotLabel->mRealdistQueue.enqueue(distance);
+	this->ui->PlotLabel->mRealdistQueue.dequeue();
 }

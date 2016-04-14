@@ -42,7 +42,7 @@ public:
     QLabel *DistanceValueLabel;
     QLabel *RealDistanceLable;
     QLabel *RealDistanceValueLabel;
-    myPlotLabel *PlotLabel;
+    MyPlotLabel *PlotLabel;
     QGridLayout *figureLayout;
     QSpacerItem *verticalSpacerBottom;
     QSpacerItem *verticalSpacerTop;
@@ -154,7 +154,7 @@ public:
 
         CompareLayout->addLayout(horizontalLayout_2);
 
-        PlotLabel = new myPlotLabel(RobotControlDialog);
+        PlotLabel = new MyPlotLabel(RobotControlDialog);
         PlotLabel->setObjectName(QStringLiteral("PlotLabel"));
         QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy3.setHorizontalStretch(0);

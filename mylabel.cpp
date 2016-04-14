@@ -61,8 +61,11 @@ void MyLabel::updateFrame()
 {
 	rect = tracker.update(frame);
 	double pixNum = rect.y + rect.height - 288;
+	double dist = 749800 * 1 / pixNum - 722.1;
 	if (pixNum > 0)
-		emit setDistance(749800 * 1 / pixNum - 722.1);
+	{ 
+		emit setDistance(dist);	
+	}
 	else
 		emit setDistance(0);
 	//this->mTimer.stop();
