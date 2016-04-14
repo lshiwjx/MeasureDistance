@@ -29,14 +29,15 @@ class Ui_RobotControlDialog
 public:
     QVBoxLayout *verticalLayout;
     QGridLayout *figureLayout;
-    MyLabel *figureLabel;
-    QSpacerItem *verticalSpacerTop;
     QSpacerItem *verticalSpacerBottom;
+    QSpacerItem *verticalSpacerTop;
+    MyLabel *figureLabel;
     QSpacerItem *horizontalSpacerRight;
     QSpacerItem *horizontalSpacerLeft;
     QGridLayout *controlLayout;
-    QLabel *DistanceValueLabel;
     QLabel *DistanceLabel;
+    QLabel *DistanceValueLabel;
+    QLabel *cameraControlLabel;
     QGridLayout *cameraControlLayout;
     QPushButton *cameraLeftBtn;
     QPushButton *cameraInBtn;
@@ -48,7 +49,6 @@ public:
     QPushButton *cameraOpenBtn;
     QPushButton *cameraStopBtn;
     QLabel *robotControlLabel;
-    QLabel *cameraControlLabel;
     QGridLayout *robotControlLayout;
     QPushButton *robotBackBtn;
     QPushButton *robotForwardBtn;
@@ -70,6 +70,8 @@ public:
         sizePolicy.setHeightForWidth(RobotControlDialog->sizePolicy().hasHeightForWidth());
         RobotControlDialog->setSizePolicy(sizePolicy);
         RobotControlDialog->setMinimumSize(QSize(0, 800));
+        RobotControlDialog->setWindowOpacity(1);
+        RobotControlDialog->setAutoFillBackground(true);
         RobotControlDialog->setSizeGripEnabled(true);
         verticalLayout = new QVBoxLayout(RobotControlDialog);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -77,6 +79,14 @@ public:
         figureLayout->setObjectName(QStringLiteral("figureLayout"));
         figureLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
         figureLayout->setContentsMargins(0, -1, -1, -1);
+        verticalSpacerBottom = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        figureLayout->addItem(verticalSpacerBottom, 3, 1, 1, 1);
+
+        verticalSpacerTop = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        figureLayout->addItem(verticalSpacerTop, 0, 1, 1, 1);
+
         figureLabel = new MyLabel(RobotControlDialog);
         figureLabel->setObjectName(QStringLiteral("figureLabel"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -92,38 +102,35 @@ public:
         figureLabel->setTextFormat(Qt::AutoText);
         figureLabel->setAlignment(Qt::AlignCenter);
 
-        figureLayout->addWidget(figureLabel, 1, 1, 1, 1);
-
-        verticalSpacerTop = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        figureLayout->addItem(verticalSpacerTop, 0, 1, 1, 1);
-
-        verticalSpacerBottom = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        figureLayout->addItem(verticalSpacerBottom, 2, 1, 1, 1);
+        figureLayout->addWidget(figureLabel, 2, 1, 1, 1);
 
         horizontalSpacerRight = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        figureLayout->addItem(horizontalSpacerRight, 1, 2, 1, 1);
+        figureLayout->addItem(horizontalSpacerRight, 2, 2, 1, 1);
 
         horizontalSpacerLeft = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        figureLayout->addItem(horizontalSpacerLeft, 1, 0, 1, 1);
+        figureLayout->addItem(horizontalSpacerLeft, 2, 0, 1, 1);
 
 
         verticalLayout->addLayout(figureLayout);
 
         controlLayout = new QGridLayout();
         controlLayout->setObjectName(QStringLiteral("controlLayout"));
+        DistanceLabel = new QLabel(RobotControlDialog);
+        DistanceLabel->setObjectName(QStringLiteral("DistanceLabel"));
+
+        controlLayout->addWidget(DistanceLabel, 3, 0, 1, 1);
+
         DistanceValueLabel = new QLabel(RobotControlDialog);
         DistanceValueLabel->setObjectName(QStringLiteral("DistanceValueLabel"));
 
         controlLayout->addWidget(DistanceValueLabel, 3, 1, 1, 1);
 
-        DistanceLabel = new QLabel(RobotControlDialog);
-        DistanceLabel->setObjectName(QStringLiteral("DistanceLabel"));
+        cameraControlLabel = new QLabel(RobotControlDialog);
+        cameraControlLabel->setObjectName(QStringLiteral("cameraControlLabel"));
 
-        controlLayout->addWidget(DistanceLabel, 3, 0, 1, 1);
+        controlLayout->addWidget(cameraControlLabel, 0, 1, 1, 1);
 
         cameraControlLayout = new QGridLayout();
         cameraControlLayout->setObjectName(QStringLiteral("cameraControlLayout"));
@@ -179,11 +186,6 @@ public:
         robotControlLabel->setObjectName(QStringLiteral("robotControlLabel"));
 
         controlLayout->addWidget(robotControlLabel, 0, 0, 1, 1);
-
-        cameraControlLabel = new QLabel(RobotControlDialog);
-        cameraControlLabel->setObjectName(QStringLiteral("cameraControlLabel"));
-
-        controlLayout->addWidget(cameraControlLabel, 0, 1, 1, 1);
 
         robotControlLayout = new QGridLayout();
         robotControlLayout->setObjectName(QStringLiteral("robotControlLayout"));
@@ -249,10 +251,10 @@ public:
 
     void retranslateUi(QDialog *RobotControlDialog)
     {
-        RobotControlDialog->setWindowTitle(QApplication::translate("RobotControlDialog", "Dialog", 0));
         figureLabel->setText(QString());
-        DistanceValueLabel->setText(QString());
         DistanceLabel->setText(QApplication::translate("RobotControlDialog", "\350\267\235\347\246\273", 0));
+        DistanceValueLabel->setText(QString());
+        cameraControlLabel->setText(QApplication::translate("RobotControlDialog", "\346\221\204\345\203\217\345\244\264\346\216\247\345\210\266", 0));
         cameraLeftBtn->setText(QApplication::translate("RobotControlDialog", "\345\267\246\347\247\273", 0));
         cameraInBtn->setText(QApplication::translate("RobotControlDialog", "\347\274\251\345\260\217", 0));
         cameraHomeBtn->setText(QApplication::translate("RobotControlDialog", "Home", 0));
@@ -263,7 +265,6 @@ public:
         cameraOpenBtn->setText(QApplication::translate("RobotControlDialog", "\346\211\223\345\274\200", 0));
         cameraStopBtn->setText(QApplication::translate("RobotControlDialog", "\345\205\263\351\227\255", 0));
         robotControlLabel->setText(QApplication::translate("RobotControlDialog", "\350\275\246\350\276\206\346\216\247\345\210\266", 0));
-        cameraControlLabel->setText(QApplication::translate("RobotControlDialog", "\346\221\204\345\203\217\345\244\264\346\216\247\345\210\266", 0));
         robotBackBtn->setText(QApplication::translate("RobotControlDialog", "\345\220\216\351\200\200", 0));
         robotForwardBtn->setText(QApplication::translate("RobotControlDialog", "\345\211\215\350\277\233", 0));
         robotStopBtn->setText(QApplication::translate("RobotControlDialog", "\345\201\234\346\255\242", 0));
@@ -271,6 +272,7 @@ public:
         robotLeftBtn->setText(QApplication::translate("RobotControlDialog", "\345\267\246\350\275\254", 0));
         RealDistanceLable->setText(QApplication::translate("RobotControlDialog", "\345\256\236\351\231\205\350\267\235\347\246\273", 0));
         RealDistanceValueLabel->setText(QString());
+        Q_UNUSED(RobotControlDialog);
     } // retranslateUi
 
 };

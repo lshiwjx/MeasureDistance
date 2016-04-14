@@ -8,6 +8,8 @@ LoginDialog::LoginDialog(QWidget *parent, RobotClient *qRobotClient) :
     mRobotClient(qRobotClient)
 {
     ui->setupUi(this);
+	setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+	setAttribute(Qt::WA_TranslucentBackground);
 }
 
 LoginDialog::~LoginDialog()
